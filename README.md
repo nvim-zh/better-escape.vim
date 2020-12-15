@@ -39,3 +39,7 @@ better_escape_shortcut`:
 " use jj to escape insert mode.
 let g:better_escape_shortcut = 'jj'
 ```
+
+# Doc
+
+See `:h better-escape.txt`.
