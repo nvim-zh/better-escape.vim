@@ -1,0 +1,66 @@
+*better-escape.txt*              Last change: 2020-12-16
+
+Escaping insert mode without lagging!
+
+Author  : Jiedong Hao <jdhao@hotmail.com>
+License : MIT license
+
+Requirement:    Vim 7.4+ or Neovim 0.4+
+
+==============================================================================
+CONTENTS                *better-escape-contents*
+INTRODUCTION                |better-escape-introduction|
+USAGE                       |better-escape-usage|
+CONFIGURATION               |better-escape-configuration|
+
+==============================================================================
+INTRODUCTION                *better-escape-introduction*
+
+A lot of people have used `jk` or `kj` or `kk` mappings in insert mode in order to
+leave the insert mode quickly. However, when you press the first key in these
+mappings, Vim will wait for |timeoutlen| milliseconds before writing this char
+to buffer, which is annoying.
+
+Better-escape.vim is a Vim/Neovim plugin to enable the users to escape from
+insert mode quickly using their customizied key combinations, without
+experiencing the lag
+
+==============================================================================
+USAGE                *better-escape-usage*
+
+The default shortcut for leaving insert mode is `jk`. First press `j`, then
+quickly press `k`, you will leave insert mode.
+
+==============================================================================
+CONFIGURATION               *better-escape-configuration*
+
+g:better_escape_shortcut                *g:better_escape_shortcut*
+    Type: |String|
+    Default: `'jk'`
+
+    This is the shortcut you use to escape from insert mode. Must be eacxtly
+    two characters long. You can adjust |g:better_escape_interval| to change
+    the time interval between pressing the two chars in this shortcut.
+
+    Example:
+>
+    let g:better_escape_shortcut = 'jj'
+>
+
+g:better_escape_interval                *g:better_escape_interval*
+    Type: |Number|
+    Default: `150`
+
+    This is the time interval (in milliseconds) between the successive
+    pressing of two characters in |g:better_escape_shortcut|. If the time
+    interval between the pressing of these two keys are above this value, the
+    two characters will be inserted literally.
+
+    Example:
+>
+    " set time interval to 200 ms
+    let g:better_escape_interval = 200
+>
+
+==============================================================================
+vim:ft=help
