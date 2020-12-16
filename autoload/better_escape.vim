@@ -12,7 +12,9 @@ function! better_escape#EscapeInsertOrNot() abort
       " time interval in milliseconds between last time you press j in insert
       " mode and the time you press k now
       let b:t_interval_from_j = reltimefloat(reltime(b:prev_ins_j_time)) * 1000
-      echomsg printf('[Better-escape] Time interval between %s and %s: %.2f ms', l:ch1, l:ch2, b:t_interval_from_j)
+      if g:better_escape_debug == 1
+        echomsg printf('[Better-escape] Time interval between %s and %s: %.2f ms', l:ch1, l:ch2, b:t_interval_from_j)
+      endif
       if b:t_interval_from_j < g:better_escape_interval
         let l:ret_ch = "\b\e"
       endif

@@ -17,6 +17,10 @@ if len(g:better_escape_shortcut) != 2
   finish
 endif
 
+if !exists('g:better_escape_debug')
+  let g:better_escape_debug = 0
+endif
+
 let s:char1 = g:better_escape_shortcut[0]
 let s:char2 = g:better_escape_shortcut[1]
 

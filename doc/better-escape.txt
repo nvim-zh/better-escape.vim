@@ -61,6 +61,18 @@ g:better_escape_interval                *g:better_escape_interval*
     " set time interval to 200 ms
     let g:better_escape_interval = 200
 >
+>
+g:better_escape_debug                   *g:better_escape_debug*
+    Type: |Number|
+    Default: `0`
+
+    Print some debugging message to your message history.
+
+    Example:
+>
+    " turn on debug mode
+    let g:better_escape_debug = 1
+>
 
 ==============================================================================
 vim:ft=help
