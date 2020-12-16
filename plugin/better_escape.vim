@@ -1,3 +1,8 @@
+if !has('patch-7.4.1730')
+  echoerr 'patch-7.4.1730 must exist for this plugin to work.'
+  finish
+endif
+
 if &compatible || exists('g:loaded_better_escape')
   finish
 endif
