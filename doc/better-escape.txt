@@ -5,7 +5,7 @@ Escaping insert mode without lagging!
 Author  : Jiedong Hao <jdhao@hotmail.com>
 License : MIT license
 
-Requirement:    Vim 7.4+ or Neovim 0.4+
+Requirement:    Vim 7.4 (patch 7.4.1730) or Neovim 0.4+
 
 ==============================================================================
 CONTENTS                *better-escape-contents*
