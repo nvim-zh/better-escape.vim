@@ -13,7 +13,7 @@ function! better_escape#EscapeInsertOrNot() abort
       " mode and the time you press k now
       let b:t_interval_from_j = reltimefloat(reltime(b:prev_ins_j_time)) * 1000
       if g:better_escape_debug == 1
-        echomsg printf('[Better-escape] Time interval between %s and %s: %.2f ms', l:ch1, l:ch2, b:t_interval_from_j)
+        call better_escape#log(printf('Time interval between %s and %s: %.2f ms', l:ch1, l:ch2, b:t_interval_from_j), 'msg')
       endif
       if b:t_interval_from_j < g:better_escape_interval
         let l:ret_ch = "\b\e"
@@ -39,3 +39,14 @@ function! better_escape#CharAtIdx(str, idx) abort
   " instead of the byte index.
   return strcharpart(a:str, a:idx, 1)
 endfunction
+
+function! better_escape#log(msg, level) abort
+  if a:level ==# 'err'
+    echohl ErrorMsg
+  endif
+  echomsg '[Better-escape] ' . a:msg
+  if a:level ==# 'err'
+    echohl None
+  endif
+endfunction
+

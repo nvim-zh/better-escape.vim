@@ -1,5 +1,5 @@
 if !has('patch-7.4.1730')
-  echoerr 'patch-7.4.1730 must exist for this plugin to work.'
+  call better_escape#log('patch-7.4.1730 must exist for this plugin to work!', 'err')
   finish
 endif
 
@@ -18,7 +18,7 @@ if !exists('g:better_escape_shortcut')
 endif
 
 if len(g:better_escape_shortcut) != 2
-  echoerr 'Option g:better_escape_shortcut takes exactly two characters!'
+  call better_escape#log('Option g:better_escape_shortcut takes exactly two characters!', 'err')
   finish
 endif
 
