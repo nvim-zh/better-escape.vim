@@ -40,6 +40,8 @@ better_escape_shortcut`:
 let g:better_escape_shortcut = 'jj'
 ```
 
+## Multiple shortcuts
+
 Multiple shortcuts are also supported:
 
 ```vim
