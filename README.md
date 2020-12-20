@@ -48,4 +48,4 @@ let g:better_escape_shortcut = ['jk', 'kj', 'oo']
 
 # Doc
 
-See `:h better-escape.txt`.
+See [`:h better-escape.txt`](doc/better-escape.txt).
