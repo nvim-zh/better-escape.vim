@@ -1,21 +1,19 @@
-function! better_escape#EscapeInsertOrNot() abort
-  " If k is preceded by j, then remove j and go to normal mode.
-  let line_text = getline('.')
+function! better_escape#EscapeInsertOrNot(ch1, ch2) abort
   let cur_ch_idx = better_escape#CursorCharIdx()
-  let pre_char = better_escape#CharAtIdx(line_text, cur_ch_idx-1)
+  let pre_char = better_escape#CharAtIdx(getline('.'), cur_ch_idx-1)
 
-  let l:ch1 = g:better_escape_shortcut[0]
-  let l:ch2 = g:better_escape_shortcut[1]
-  let l:ret_ch = l:ch2
+  let l:ret_ch = a:ch2
 
-  if pre_char ==# l:ch1 && exists('b:prev_ins_j_time')
-      " time interval in milliseconds between last time you press j in insert
-      " mode and the time you press k now
-      let b:t_interval_from_j = reltimefloat(reltime(b:prev_ins_j_time)) * 1000
+  let l:ch1_press_time = g:better_escape_initial_press_time[a:ch1]
+  if pre_char ==# a:ch1 && l:ch1_press_time != []
+      " time interval in milliseconds between last time you press `ch1` in insert
+      " mode and the time you press `ch2` now
+      let l:time_interval = reltimefloat(reltime(l:ch1_press_time)) * 1000
       if g:better_escape_debug == 1
-        call better_escape#log(printf('Time interval between %s and %s: %.2f ms', l:ch1, l:ch2, b:t_interval_from_j), 'msg')
+        call better_escape#log(printf('Time interval between pressing %s and %s: %.2f ms', a:ch1, a:ch2, l:time_interval), 'msg')
       endif
-      if b:t_interval_from_j < g:better_escape_interval
+
+      if l:time_interval < g:better_escape_interval
         let l:ret_ch = "\b\e"
       endif
   endif
@@ -50,3 +48,8 @@ function! better_escape#log(msg, level) abort
   endif
 endfunction
 
+function! better_escape#LogKeyPressTime() abort
+  if has_key(g:better_escape_initial_press_time, v:char)
+    let g:better_escape_initial_press_time[v:char] = reltime()
+  endif
+endfunction

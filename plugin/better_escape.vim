@@ -14,24 +14,58 @@ if !exists('g:better_escape_interval')
 endif
 
 if !exists('g:better_escape_shortcut')
-  let g:better_escape_shortcut = 'jk'
-endif
+  let g:better_escape_shortcut = ['jk', ]
+else
+  if type(g:better_escape_shortcut) == v:t_string
+    let g:better_escape_shortcut = [g:better_escape_shortcut, ]
+  elseif type(g:better_escape_shortcut) != v:t_list
+    call better_escape#log('Type of option g:better_escape_shortcut must be String or List.', 'err')
+    finish
+  endif
 
-if len(g:better_escape_shortcut) != 2
-  call better_escape#log('Option g:better_escape_shortcut takes exactly two characters!', 'err')
-  finish
+  " We should check the validity of option given by user.
+  for shortcut in g:better_escape_shortcut
+    if len(shortcut) != 2
+      call better_escape#log('Only two-character shortcuts are supported! '
+            \ . 'Make sure that all your shortcuts are made of two characters', 'err')
+      finish
+    endif
+  endfor
 endif
 
 if !exists('g:better_escape_debug')
   let g:better_escape_debug = 0
 endif
 
-let s:char1 = g:better_escape_shortcut[0]
-let s:char2 = g:better_escape_shortcut[1]
+function! s:get_initial_char() abort
+  let l:init_ch_freq = {}
+  for l:shortcut in g:better_escape_shortcut
+    let l:ch = l:shortcut[0]
+    if !has_key(l:init_ch_freq, l:ch)
+      let l:init_ch_freq[l:ch] = 1
+    else
+      let l:init_ch_freq[l:ch] += 1
+    endif
+  endfor
+
+  return keys(l:init_ch_freq)
+endfunction
+
+" The first character in each shortcut
+let g:better_escape_shortcut_initials = s:get_initial_char()
+
+" The time when the first char is pressed in each shortcut
+let g:better_escape_initial_press_time = {}
+for ch in g:better_escape_shortcut_initials
+  let g:better_escape_initial_press_time[ch] = []
+endfor
 
 augroup ins_char
   autocmd!
-  autocmd InsertCharPre * if v:char ==# s:char1 | let b:prev_ins_j_time = reltime() | endif
+  autocmd InsertCharPre * call better_escape#LogKeyPressTime()
 augroup END
 
-execute printf('inoremap <expr> %s better_escape#EscapeInsertOrNot()', s:char2)
+for shortcut in g:better_escape_shortcut
+  let [ch1, ch2] = split(shortcut, '\zs')
+  execute printf('inoremap <expr> %s better_escape#EscapeInsertOrNot("%s", "%s")', ch2, ch1, ch2)
+endfor

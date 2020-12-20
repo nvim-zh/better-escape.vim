@@ -35,17 +35,24 @@ quickly press `k`, you will leave insert mode.
 CONFIGURATION               *better-escape-configuration*
 
 g:better_escape_shortcut                *g:better_escape_shortcut*
-    Type: |String|
-    Default: `'jk'`
+    Type: |String| or |List|
+    Default: `['jk',]`
 
-    This is the shortcut you use to escape from insert mode. Must be eacxtly
-    two characters long. You can adjust |g:better_escape_interval| to change
-    the time interval between pressing the two chars in this shortcut.
+    This is a list of shortcuts you use to escape from insert mode. Each
+    shortcut must must have two characters. You can adjust |g:better_escape_interval|
+    to change the time interval between pressing the two chars in the
+    shortcut.
 
     Example:
 >
     let g:better_escape_shortcut = 'jj'
->
+    let g:better_escape_shortcut = ['jj', 'jk']
+<
+
+    Note: Due to the implementation details, you can not define two shortcuts
+    whose second chars are the same, for example `jk` and `kk` won't work
+    together (whoever comes last in the definition will work).
+
 
 g:better_escape_interval                *g:better_escape_interval*
     Type: |Number|
