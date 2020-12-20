@@ -46,6 +46,9 @@ Multiple shortcuts are also supported:
 let g:better_escape_shortcut = ['jk', 'kj', 'oo']
 ```
 
+See `:h better-escape-shortcut-limitation` for the limitation on defining
+multiple shortcuts.
+
 # Doc
 
 See [`:h better-escape.txt`](doc/better-escape.txt).
