@@ -25,7 +25,7 @@ else
 
   " We should check the validity of option given by user.
   for shortcut in g:better_escape_shortcut
-    if len(shortcut) != 2
+    if strchars(shortcut) != 2
       call better_escape#log('Only two-character shortcuts are supported! '
             \ . 'Make sure that all your shortcuts are made of two characters', 'err')
       finish
@@ -40,7 +40,7 @@ endif
 function! s:get_initial_char() abort
   let l:init_ch_freq = {}
   for l:shortcut in g:better_escape_shortcut
-    let l:ch = l:shortcut[0]
+    let l:ch = better_escape#CharAtIdx(l:shortcut, 0)
     if !has_key(l:init_ch_freq, l:ch)
       let l:init_ch_freq[l:ch] = 1
     else
