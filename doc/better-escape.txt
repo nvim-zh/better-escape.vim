@@ -46,13 +46,8 @@ g:better_escape_shortcut                *g:better_escape_shortcut*
     Example:
 >
     let g:better_escape_shortcut = 'jj'
-    let g:better_escape_shortcut = ['jj', 'jk']
+    let g:better_escape_shortcut = ['jj', 'jk', 'kj']
 <
-                                        *better-escape-shortcut-limitation*
-    Note: Due to the implementation details, you can not define two shortcuts
-    whose second chars are the same, for example `jk` and `kk` won't work
-    together (whoever comes last in the definition will work).
-
 
 g:better_escape_interval                *g:better_escape_interval*
     Type: |Number|

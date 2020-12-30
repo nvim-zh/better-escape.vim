@@ -38,17 +38,13 @@ if !exists('g:better_escape_debug')
 endif
 
 function! s:get_initial_char() abort
-  let l:init_ch_freq = {}
+  let initial_chars = []
   for l:shortcut in g:better_escape_shortcut
     let l:ch = better_escape#CharAtIdx(l:shortcut, 0)
-    if !has_key(l:init_ch_freq, l:ch)
-      let l:init_ch_freq[l:ch] = 1
-    else
-      let l:init_ch_freq[l:ch] += 1
-    endif
+    let initial_chars += [l:ch]
   endfor
 
-  return keys(l:init_ch_freq)
+  return initial_chars
 endfunction
 
 " The first character in each shortcut
@@ -65,7 +61,24 @@ augroup ins_char
   autocmd InsertCharPre * call better_escape#LogKeyPressTime()
 augroup END
 
-for shortcut in g:better_escape_shortcut
-  let [ch1, ch2] = split(shortcut, '\zs')
-  execute printf('inoremap <expr> %s better_escape#EscapeInsertOrNot("%s", "%s")', ch2, ch1, ch2)
+function! s:get_shortcut_keymap() abort
+  let key_map = {}
+  for l:shortcut in g:better_escape_shortcut
+    let l:ch1 = better_escape#CharAtIdx(l:shortcut, 0)
+    let l:ch2 = better_escape#CharAtIdx(l:shortcut, 1)
+    if has_key(key_map, l:ch2)
+      let key_map[l:ch2] += [l:ch1]
+    else
+      let key_map[l:ch2] = [l:ch1]
+    endif
+  endfor
+
+  return key_map
+endfunction
+
+let s:shortcut_map = s:get_shortcut_keymap()
+
+for k in keys(s:shortcut_map)
+  let first_chars = s:shortcut_map[k]
+  execute printf('inoremap <expr> %s better_escape#EscapeInsertOrNot(%s, "%s")', k, first_chars, k)
 endfor

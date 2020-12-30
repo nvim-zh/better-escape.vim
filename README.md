@@ -45,11 +45,8 @@ let g:better_escape_shortcut = 'jj'
 Multiple shortcuts are also supported:
 
 ```vim
-let g:better_escape_shortcut = ['jk', 'kj', 'oo']
+let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
 ```
-
-See `:h better-escape-shortcut-limitation` for the limitation on defining
-multiple shortcuts.
 
 # Doc
 

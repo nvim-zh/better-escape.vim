@@ -1,16 +1,22 @@
-function! better_escape#EscapeInsertOrNot(ch1, ch2) abort
+function! better_escape#EscapeInsertOrNot(prefix, ch2) abort
+  " prefix is a list of chars that corresponds to ch2 in all the shortcuts.
   let cur_ch_idx = better_escape#CursorCharIdx()
   let pre_char = better_escape#CharAtIdx(getline('.'), cur_ch_idx-1)
 
+  " If we can not find pre_char in prefix, we do not want to escape insert.
+  if index(a:prefix, pre_char) == -1
+    return a:ch2
+  endif
+
   let l:ret_ch = a:ch2
 
-  let l:ch1_press_time = g:better_escape_initial_press_time[a:ch1]
-  if pre_char ==# a:ch1 && l:ch1_press_time != []
+  let l:ch1_press_time = g:better_escape_initial_press_time[pre_char]
+  if l:ch1_press_time != []
       " time interval in milliseconds between last time you press `ch1` in insert
       " mode and the time you press `ch2` now
       let l:time_interval = reltimefloat(reltime(l:ch1_press_time)) * 1000
       if g:better_escape_debug == 1
-        call better_escape#log(printf('Time interval between pressing %s and %s: %.2f ms', a:ch1, a:ch2, l:time_interval), 'msg')
+        call better_escape#log(printf('Time interval between pressing %s and %s: %.2f ms', pre_char, a:ch2, l:time_interval), 'msg')
       endif
 
       if l:time_interval < g:better_escape_interval
