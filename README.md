@@ -50,3 +50,7 @@ let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
 # Doc
 
 See [`:h better-escape.txt`](doc/better-escape.txt).
+
+# License
+
+This plugin is released under the MIT License.
