@@ -44,7 +44,7 @@ function! better_escape#CharAtIdx(str, idx) abort
   return strcharpart(a:str, a:idx, 1)
 endfunction
 
-function! better_escape#log(msg, level) abort
+function! better_escape#log(msg, level = 'msg') abort
   if a:level ==# 'err'
     echohl ErrorMsg
   endif
