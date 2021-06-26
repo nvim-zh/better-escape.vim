@@ -55,6 +55,9 @@ function! better_escape#log(msg, level = 'msg') abort
 endfunction
 
 function! better_escape#LogKeyPressTime() abort
+  if g:better_escape_debug == 1
+    call better_escape#log(printf('Key %s pressed at %s', v:char, reltime()))
+  endif
   if has_key(g:better_escape_initial_press_time, v:char)
     let g:better_escape_initial_press_time[v:char] = reltime()
   endif
