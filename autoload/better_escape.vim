@@ -44,7 +44,7 @@ function! better_escape#CharAtIdx(str, idx) abort
   return strcharpart(a:str, a:idx, 1)
 endfunction
 
-function! better_escape#log(msg, level = 'msg') abort
+function! better_escape#log(msg, level) abort
   if a:level ==# 'err'
     echohl ErrorMsg
   endif
@@ -56,7 +56,7 @@ endfunction
 
 function! better_escape#LogKeyPressTime() abort
   if g:better_escape_debug == 1
-    call better_escape#log(printf('Key %s pressed at %s', v:char, reltime()))
+    call better_escape#log(printf('Key %s pressed at %s', v:char, reltime()), 'msg')
   endif
   if has_key(g:better_escape_initial_press_time, v:char)
     let g:better_escape_initial_press_time[v:char] = reltime()
