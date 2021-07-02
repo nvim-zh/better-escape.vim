@@ -10,6 +10,11 @@ Better-escape.vim is a plugin to help Vim/Nvim users escape from insert mode
 quickly using their customized key combinations, **without experiencing the
 lag**.
 
+# Requirements
+
++ Neovim: 0.4.4 and above
++ Vim: 8.0 and above (not tested on Vim 7.4)
+
 # Install
 
 Use your favorite plugin manager to install it:
