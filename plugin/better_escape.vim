@@ -9,33 +9,27 @@ endif
 
 let g:loaded_better_escape = 1
 
-if !exists('g:better_escape_interval')
-  let g:better_escape_interval = 150
+let g:better_escape_interval = get(g:, "better_escape_interval", 150)
+
+let g:better_escape_shortcut = get(g:, "better_escape_shortcut", ['jk',])
+
+if type(g:better_escape_shortcut) == v:t_string
+  let g:better_escape_shortcut = [g:better_escape_shortcut, ]
+elseif type(g:better_escape_shortcut) != v:t_list
+  call better_escape#log('Option g:better_escape_shortcut must be a string or list.', 'err')
+  finish
 endif
 
-if !exists('g:better_escape_shortcut')
-  let g:better_escape_shortcut = ['jk', ]
-else
-  if type(g:better_escape_shortcut) == v:t_string
-    let g:better_escape_shortcut = [g:better_escape_shortcut, ]
-  elseif type(g:better_escape_shortcut) != v:t_list
-    call better_escape#log('Type of option g:better_escape_shortcut must be String or List.', 'err')
+" We should check the validity of option given by user.
+for shortcut in g:better_escape_shortcut
+  if strchars(shortcut) != 2
+    call better_escape#log('Only two-character shortcuts are supported! '
+          \ . 'Make sure that all your shortcuts are made of two characters', 'err')
     finish
   endif
+endfor
 
-  " We should check the validity of option given by user.
-  for shortcut in g:better_escape_shortcut
-    if strchars(shortcut) != 2
-      call better_escape#log('Only two-character shortcuts are supported! '
-            \ . 'Make sure that all your shortcuts are made of two characters', 'err')
-      finish
-    endif
-  endfor
-endif
-
-if !exists('g:better_escape_debug')
-  let g:better_escape_debug = 0
-endif
+let g:better_escape_debug = get(g:, "better_escape_debug", 0)
 
 function! s:get_initial_char() abort
   let initial_chars = []
