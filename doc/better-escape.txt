@@ -46,7 +46,7 @@ g:better_escape_shortcut                *g:better_escape_shortcut*
     Example:
 >
     let g:better_escape_shortcut = 'jj'
-    let g:better_escape_shortcut = ['jj', 'jk', 'kj']
+    let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
 <
 
 g:better_escape_interval                *g:better_escape_interval*
