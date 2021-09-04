@@ -62,3 +62,7 @@ See [`:h better-escape.txt`](doc/better-escape.txt).
 # License
 
 This plugin is released under the MIT License.
+
+# Similar projects
+
++ https://github.com/zhou13/vim-easyescape (Requires Python3)
