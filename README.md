@@ -67,3 +67,4 @@ This plugin is released under the MIT License.
 # Similar projects
 
 + https://github.com/zhou13/vim-easyescape
++ https://github.com/max397574/better-escape.nvim (a lua re-implementation of this plugin)
