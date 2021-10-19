@@ -1,4 +1,4 @@
-# Description
+# 💡 Motivation
 
 A lot of people have been mapping `jk` or `kj` or `kk` to <kbd>ESC</kbd> in
 order to escape insert mode quickly. However, when we press the first key in
@@ -9,12 +9,14 @@ this behaviour is annoying.
 Better-escape.vim is created to help Vim/Nvim users escape insert mode quickly
 using their customized key combinations, **without experiencing the lag**.
 
-# Requirements
+# 🚀 Quickstart
+
+## Requirements
 
 + Neovim: 0.4.4 and above
 + Vim: 8.0 and above (not tested on Vim 7.4)
 
-# Install
+## Install
 
 Use your favorite plugin manager to install it:
 
@@ -24,11 +26,24 @@ Use your favorite plugin manager to install it:
 + [vim-packager](https://github.com/kristijanhusak/vim-packager): `call packager#add('jdhao/better-escape.vim')`
 + [minpac](https://github.com/k-takata/minpac): `call minpac#add('jdhao/better-escape.vim')`
 
-# How to use?
+## How to use?
 
 This plugin works out of the box. The default shortcut for escaping insert mode
-is `jk`: press `j` first, then **quickly** press `k`, you will leave insert
-mode.
+is `jk`, that is, pressing `j` first, then pressing `k` **quickly**, you will
+leave insert mode.
+
+# 🔧 Configuration
+
+## How to change shortcut
+
+If you want to use other shortcuts, you can customize via option `g:better_escape_shortcut`:
+
+```vim
+" use jj to escape insert mode.
+let g:better_escape_shortcut = 'jj'
+```
+
+## Adjust time interval threshold
 
 By default, the time interval threshold between pressing `j` and `k` is 150 ms.
 That is, if the time interval between pressing `k` and `j` is above the
@@ -40,14 +55,7 @@ leave insert mode. The threshold can be customized via option `g:better_escape_i
 let g:better_escape_interval = 200
 ```
 
-If you want to use other shortcuts, you can customize via option `g:better_escape_shortcut`:
-
-```vim
-" use jj to escape insert mode.
-let g:better_escape_shortcut = 'jj'
-```
-
-## Multiple shortcuts
+## Using multiple shortcuts?
 
 Some people may prefer to use multiple shortcuts. This is also supported:
 
@@ -56,15 +64,15 @@ Some people may prefer to use multiple shortcuts. This is also supported:
 let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
 ```
 
-# Doc
+# 📚 Documentation
 
 See [`:h better-escape.txt`](doc/better-escape.txt).
 
-# License
+# 📝 License
 
 This plugin is released under the MIT License.
 
-# Similar projects
+# ❤️  Similar projects
 
 + https://github.com/zhou13/vim-easyescape
 + https://github.com/max397574/better-escape.nvim (a lua re-implementation of this plugin)
