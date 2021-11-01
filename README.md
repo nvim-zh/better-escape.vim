@@ -20,7 +20,7 @@ using their customized key combinations, **without experiencing the lag**.
 
 Use your favorite plugin manager to install it:
 
-+ [packer.nvim](https://github.com/wbthomason/packer.nvim): `use {'jdhao/better-escape.vim'， event = 'InsertEnter'}`
++ [packer.nvim](https://github.com/wbthomason/packer.nvim): `use {'jdhao/better-escape.vim', event = 'InsertEnter'}`
 + [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'jdhao/better-escape.vim'`
 + [dein](https://github.com/Shougo/dein.vim): `call dein#add('jdhao/better-escape.vim')`
 + [vim-packager](https://github.com/kristijanhusak/vim-packager): `call packager#add('jdhao/better-escape.vim')`
