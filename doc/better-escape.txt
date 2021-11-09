@@ -1,4 +1,4 @@
-*better-escape.txt*              Last change: 2020-12-16
+*better-escape.txt*              Last change: 2021-09-04
 
 Escaping insert mode without lagging!
 
