@@ -1,4 +1,4 @@
-*better-escape.txt*              Last change: 2021-09-04
+*better-escape.txt*              Last change: 2022-02-05
 
 Escaping insert mode without lagging!
 
@@ -68,7 +68,11 @@ g:better_escape_debug                   *g:better_escape_debug*
     Type: |Number|
     Default: `0`
 
-    Print some debugging message to your message history.
+    Sometimes, you may wonder why the given escape shortcut does not work as
+    intended. Maybe it is because you have not pressed the two keys fast
+    enough. If you turn on this option, it will print some debug messages to
+    the message history, including the actual key press interval between the
+    two characters in the escape shortcut.
 
     Example:
 >

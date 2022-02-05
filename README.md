@@ -64,6 +64,20 @@ Some people may prefer to use multiple shortcuts. This is also supported:
 let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
 ```
 
+## Debug and choose suitable interval
+
+Sometimes, you may wonder why the given escape shortcut does not work as intended.
+Maybe it is because you have not pressed the two keys fast enough.
+To get the interval between key presses and help you to set a reasonable interval,
+use the option `g:better_escape_debug`:
+
+```vim
+" enable debug (some message will be shown)
+let g:better_escape_debug = 1
+```
+
+Then run command `:messages` to check the debug log.
+
 # 📚 Documentation
 
 See [`:h better-escape.txt`](doc/better-escape.txt).
