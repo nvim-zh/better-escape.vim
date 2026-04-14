@@ -18,13 +18,11 @@ using their customized key combinations, **without experiencing the lag**.
 
 ## Install
 
-Use your favorite plugin manager to install it:
-
-+ [packer.nvim](https://github.com/wbthomason/packer.nvim): `use {'jdhao/better-escape.vim', event = 'InsertEnter'}`
-+ [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'jdhao/better-escape.vim'`
-+ [dein](https://github.com/Shougo/dein.vim): `call dein#add('jdhao/better-escape.vim')`
-+ [vim-packager](https://github.com/kristijanhusak/vim-packager): `call packager#add('jdhao/better-escape.vim')`
-+ [minpac](https://github.com/k-takata/minpac): `call minpac#add('jdhao/better-escape.vim')`
++ [vim-plug][vim-plug-github]: `Plug 'nvim-zh/better-escape.vim'`
++ [lazy.nvim][lazy-nvim-github]:
+```lua
+  { "nvim-zh/better-escape.vim", event = "VeryLazy" },
+```
 
 ## How to use?
 
@@ -91,3 +89,7 @@ This plugin is released under the MIT License.
 + https://github.com/Krafi2/jeskape.nvim
 + https://github.com/zhou13/vim-easyescape
 + https://github.com/max397574/better-escape.nvim (a lua re-implementation of this plugin)
+
+<!-- References -->
+[lazy-nvim-github]: https://github.com/folke/lazy.nvim
+[vim-plug-github]: https://github.com/junegunn/vim-plug
